@@ -23,28 +23,23 @@ Fonts:
 }
 
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 30px;
-  background-color: #f0f0f0;
-  color: #333;
+  font-family: Arial, sans-serif;
+  background: #e0f7fa;
 }
 
 .container {
-  max-width: 750px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 24px;
 }
 
 h1 {
   text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
+  color: #00796b;
 }
 
 h1 img {
@@ -61,11 +56,8 @@ h1 img {
 
 .stats {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px;
-  background-color: #f5f5f5;
-  padding: 15px 0;
-  border-radius: 8px;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .stats p {
@@ -77,10 +69,9 @@ h1 img {
 
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 0 auto;
-  max-width: 500px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 20px 0;
 }
 
 .grid-cell {
@@ -94,6 +85,20 @@ h1 img {
   transition: background-color 0.3s;
   position: relative;
   overflow: hidden;
+}
+
+.can {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #b2dfdb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-size: 2rem;
+  user-select: none;
 }
 
 .water-can-wrapper {
@@ -128,7 +133,6 @@ h1 img {
   }
 }
 
-
 button {
   background-color: #4CAF50;
   color: white;
@@ -140,4 +144,39 @@ button {
   display: block;
   margin: 30px auto 0;
   transition: background-color 0.2s;
+}
+
+.can.collected {
+  background: #ffd54f;
+  transform: scale(1.1);
+  animation: pop 0.2s;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2);}
+  100% { transform: scale(1.1);}
+}
+
+#start-game {
+  width: 100%;
+  padding: 12px;
+  background: #00796b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    max-width: 98vw;
+    padding: 8px;
+  }
+  .game-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
 }
