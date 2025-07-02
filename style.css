@@ -18,8 +18,16 @@ Fonts:
 
 */
 
+/* Import Avenir Light or use a close alternative (Arial, sans-serif) */
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@700&display=swap');
+
 * {
   box-sizing: border-box;
+}
+
+body, .container, h1, h2, h3, h4, h5, h6, .stats, .game-instructions, .footer, button, .can {
+  font-family: 'Avenir', 'Arial', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700; /* Bold for Proxima Nova Bold look */
 }
 
 body {
@@ -65,6 +73,11 @@ h1 img {
   font-size: 18px;
   font-weight: bold;
   color: #333;
+}
+
+.stats label, .stats select {
+  font-size: 1rem;
+  margin-right: 6px;
 }
 
 .game-grid {
@@ -168,6 +181,21 @@ button {
   font-size: 1.1rem;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 1rem;
+  color: #2E9DF7;
+}
+.footer a {
+  color: #159A48;
+  text-decoration: underline;
+  margin: 0 4px;
+}
+.footer a:hover {
+  color: #FFC907;
 }
 
 @media (max-width: 500px) {

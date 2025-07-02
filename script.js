@@ -9,11 +9,19 @@ const startBtn = document.getElementById('start-game');
 const cansDisplay = document.getElementById('current-cans');
 const timerDisplay = document.getElementById('timer');
 const achievements = document.getElementById('achievements');
+const difficultySelect = document.getElementById('difficulty');
+
+const DIFFICULTY_SETTINGS = {
+  easy:   { totalCans: 15, time: 40, spawnRate: 1200 },
+  normal: { totalCans: 20, time: 30, spawnRate: 1000 },
+  hard:   { totalCans: 25, time: 20, spawnRate: 700 }
+};
 
 let score = 0;
 let timeLeft = 30;
 let timerInterval;
-const totalCans = 20;
+let totalCans = DIFFICULTY_SETTINGS.normal.totalCans;
+let spawnRate = DIFFICULTY_SETTINGS.normal.spawnRate;
 
 // Creates the 3x3 game grid where items will appear
 function createGrid() {
@@ -58,7 +66,8 @@ function collectCan(e) {
   // Visual feedback
   can.style.background = '#ffd54f';
   setTimeout(() => {
-    can.style.background = '';
+    // Remove the can element from the DOM after feedback
+    can.remove();
   }, 200);
 
   if (score === totalCans) {
@@ -68,15 +77,24 @@ function collectCan(e) {
 
 // Initializes and starts a new game
 function startGame() {
+  // Get selected difficulty
+  const difficulty = difficultySelect.value;
+  totalCans = DIFFICULTY_SETTINGS[difficulty].totalCans;
+  timeLeft = DIFFICULTY_SETTINGS[difficulty].time;
+  spawnRate = DIFFICULTY_SETTINGS[difficulty].spawnRate;
+
   score = 0;
-  timeLeft = 30;
   cansDisplay.textContent = score;
   timerDisplay.textContent = timeLeft;
   achievements.textContent = '';
   gameActive = true;
   createGrid();
   startBtn.disabled = true;
-  spawnInterval = setInterval(spawnWaterCan, 1000); // Spawn water cans every second
+
+  clearInterval(spawnInterval);
+  clearInterval(timerInterval);
+
+  spawnInterval = setInterval(spawnWaterCan, spawnRate);
   timerInterval = setInterval(() => {
     timeLeft--;
     timerDisplay.textContent = timeLeft;
@@ -91,7 +109,10 @@ function endGame(won) {
   gameActive = false;
   startBtn.disabled = false;
   if (won) {
-    achievements.textContent = '🎉 You collected all the cans!';
+    // Show correct number of cans for the selected difficulty
+    const difficulty = difficultySelect.value;
+    const cansGoal = DIFFICULTY_SETTINGS[difficulty].totalCans;
+    achievements.textContent = `🎉 You collected ${cansGoal} cans!`;
     achievements.style.color = '#388e3c';
   } else {
     achievements.textContent = '⏰ Time\'s up! Try again!';

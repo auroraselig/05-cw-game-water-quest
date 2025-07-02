@@ -13,11 +13,24 @@
     <div class="stats">
       <p>Cans Collected: <span id="current-cans">0</span></p>
       <p>Time Left: <span id="timer">30</span>s</p>
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="normal" selected>Normal</option>
+        <option value="hard">Hard</option>
+      </select>
     </div>
     <div id="achievements" class="achievement"></div>
     <div class="game-grid"></div>
     <button id="start-game">Start Game</button>
   </div>
+  <footer class="footer">
+    <p>
+      Support clean water for all! 
+      <a href="https://www.charitywater.org/" target="_blank" rel="noopener">Visit charity: water</a> | 
+      <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener">Donate now</a>
+    </p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
